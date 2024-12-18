@@ -1,0 +1,53 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_DB: "rental_db"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "6543:5432"
+    networks:
+      - rental_network
+
+  rental_frontend:
+    container_name: frontend
+    image: rental_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - rental_service
+      - rental_photo_service
+    networks:
+      - rental_network
+
+  rental_service:
+    container_name: rental_service
+    image: rental_service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - rental_network
+
+  rental_photo_service:
+    container_name: rental_photo_service
+    image: rental_photo_service
+    ports:
+      - "8090:8090"
+    networks:
+      - rental_network
+
+volumes:
+  postgres:
+
+networks:
+  rental_network:
+    driver: bridge
