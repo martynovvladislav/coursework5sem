@@ -1,0 +1,35 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-container .auth-links {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  button.profile-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button.logout-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
